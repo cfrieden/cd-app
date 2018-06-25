@@ -37,8 +37,8 @@ jobs:
           command: |
             bundle exec rake db:create
             bundle exec rake db:schema:load
-        environment:
-          DATABASE_URL: "postgres://ubuntu@localhost:5432/cd-app_test"
+          environment:
+            DATABASE_URL: "postgres://ubuntu@localhost:5432/cd-app_test"
 
       # run tests!
       - run:
