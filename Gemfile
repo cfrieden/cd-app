@@ -19,6 +19,7 @@ gem 'puma', '~> 3.7'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'rspec-rails'
+gem 'rspec_junit_formatter'
 gem 'rails_serve_static_assets'
 
 # Use Capistrano for deployment
