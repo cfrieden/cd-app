@@ -7,19 +7,19 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-       - image: circleci/ruby:2.4.2-node-browsers
-        enviorment:
-          RAILS_ENV: test
-          PGHOST: 127.0.0.1
-          PGUSER: root
+       - image: circleci/ruby:2.4.2-node-browser
+         enviorment:
+           RAILS_ENV: test
+           PGHOST: 127.0.0.1
+           PGUSER: root
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
        - image: circleci/postgres:9.4
-        enviroment:
-          POSTGRES_USER: root
-          POSTGRES_DB: cd-app_test
+         enviroment:
+           POSTGRES_USER: root
+           POSTGRES_DB: cd-app_test
 
     working_directory: ~/repo
 
@@ -32,8 +32,13 @@ jobs:
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       # Database setup
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
+      - run:
+          name: Set up DB
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:schema:load
+        enviorment:
+          DATABASE_URL: "postgres://ubuntu@localhost:5432/cd-app_test"
 
       # run tests!
       - run:
