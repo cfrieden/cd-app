@@ -62,6 +62,7 @@ jobs:
 
   deploy:
     docker:
+        - image: circleci/python:2.7
       - run:
           name: Set up AWS credentials
           command: |
