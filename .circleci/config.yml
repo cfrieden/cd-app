@@ -65,11 +65,10 @@ jobs:
       - image: circleci/python:2.7
     steps:
       - run:
-          name: Set up AWS credentials
+          name: Setup AWS credentials
           command: |
-          mkdir ~/.aws && printf "[profile eb-cli]\naws_access_key_id =
-          ${AWS_ACCESS_KEY_ID}\naws_secret_access_key =
-          ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/config 
+            mkdir ~/.aws && printf "[profile eb-cli]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/config
+
       - run:
           name: Deploy to Elastic Beanstalk
           command: |
