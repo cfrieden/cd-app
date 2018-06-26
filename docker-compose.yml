@@ -1,0 +1,21 @@
+version: '3'
+services:
+  db:
+    image: postgres:9
+    volumes:
+    - ./tmp/db:/var/lib/postgresql/data
+
+  web:
+    build: .
+    volumes:
+      - .:/produciton
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: "3000"
+      PGHOST: "db"
+      PGUSER: "cfrieden"
+      PGDBNAME: "cdapp_development"
+      PGPASSWORD: "password"
+    depends_on:
+      - db
